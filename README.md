@@ -6,7 +6,7 @@
   <br>
 </h1>
 
-<h4 align="center">Godot plugin to share texts, images or both. Supports Godot 3 & 4</a>.</h4>
+<h4 align="center">Godot plugin to share text, image or both of em. Support Godot 3 & 4</a>.</h4>
 
 <p align="center">
   <a href="https://github.com/kyoz/godot-share/releases">
@@ -41,35 +41,35 @@
 
 # About
 
-This plugin allows you to share texts, images or both of them (Android/iOS). There is also an advanced method allowing you to save an image to the user's phone.
+This plugin allow you to share text, image or both of em (Android/iOS). There is also an advanced method allow you to save image to user phone.
 
-Built using automation scripts combined with CI/CD to help speed up the release progress as well as the release of hotfixes which save some of our time.
+Was build using automation scripts combine with CI/CD to help faster the release progress and well as release hotfix which save some of our times.
 
-Supports Godot 3 & 4.
+Support Godot 3 & 4.
 
 # Installation
 
 ## Android
 
-Download the [Android plugin](https://github.com/kyoz/godot-share/releases) (match your Godot version), and extract them to `your_project/android/plugins`
+Download the [android plugin](https://github.com/kyoz/godot-share/releases) (match your Godot version), extract them to `your_project/android/plugins`
 
-Enable `Share` plugin in your android export preset.
+Enable `Share` plugin in your android export preset
 
 *Note*: You must [use custom build](https://docs.godotengine.org/en/stable/tutorials/export/android_custom_build.html) for Android to use plugins.
 
 ## iOS
 
-Download the [iOS plugin](https://github.com/kyoz/godot-share/releases) (match your Godot version), and extract them to `ios/plugins`
+Download the [ios plugin](https://github.com/kyoz/godot-share/releases) (match your Godot version), extract them to `ios/plugins`
 
-Enable `Share` plugin in your iOS export preset.
+Enable `Share` plugin in your ios export preset
 
 # Usage
 
-An `autoload` script is provided for easier use of this plugin.
+You will need to add an `autoload` script to use this plugin more easily.
 
-Download [autoload file](./autoload) (match your Godot version). Add it to your project `autoload` list.
+Download [autoload file](./autoload) to your game (Choose correct Godot version). Add it to your project `autoload` list.
 
-Then you can easily use the plugin anywhere with:
+Then you can easily use it anywhere with:
 
 ```gdscript
 Share.init()
@@ -84,10 +84,9 @@ Share.connect("on_error", self, "_on_error")
 LocalNotification.on_error.connect(_on_error)
 ```
 
-"Why do I have to call `init()`?"  
-Well, if you don't want to, you can change `init()` to `_ready()` in the `autoload` file. But in my experience, when using a lot of plugins, initializing all plugins on `_ready()` is not a good idea. This way, you can choose whenever to initialize the plugin e.g. when showing a loading scene, etc.
+Why have to call `init()`. Well, if you don't want to call init, you can change `init()` to `_ready()` on the `autoload` file. But for my experience when using a lots of plugin, init all plugins on `_ready()` is not a good idea. So i let you choose whenever you init the plugin. When showing a loading scene...etc...
 
-For more details, see [examples](./example/)
+For more detail, see [examples](./example/)
 
 # API
 
@@ -98,23 +97,23 @@ shareText(title, subject, content)
 shareImage(image_path, title, subject, content)
 shareCapturedScreen(title, subject, content)
 
-# Advanced function, read Caution section below
+# Advanced function, read Caution part below
 saveImageToGallery(image_path)
 ```
 
 **Notes**:
 
-- Title and Subject are based on app support, like Gmail, Youtube, etc. Not every app suports them. You should focus on the content.
+- Title and Subject are base on app support, like Gmail...etc. Not all app suport em. You should focus on the content
 
-- All shared images must be inside your `User Data Folder`. You can easily get that folder path with `OS.get_user_data_dir()`. Make sure to save your images to that folder before sharing, or else this won't work. See [examples](./example/) for more details.
+- All share image must be inside your `User Data Folder`. You can easily get that folder path with `OS.get_user_data_dir()`. Make sure to save your image to that folder before share, or else it will not work. See [examples](./example/) for more detail.
 
 **Caution**:
 
-`saveImageToGallery()` is an advanced feature that I added in case someone needs it. It's great if the player can save ingame images to their phone. But there's something you must do in order to use it, or else it will result in crashing or unwanted behavior.
+`saveImageToGallery()` is an advanced feature which i add to this plugin in order if someone need. It's great if player can save there ingame images to their phone. But it have something you must do in order to use it, or else the app will crash or have unwanted behavior.
 
 To use `saveImageToGallery()`:
 
-- Android: Make sure you enabled "Allow Write Permission" in Android's export preset.
+- Android: Make sure you checked "Allow Write Permission" on android's export preset.
 - iOS: Add these to your `GameInfo.plist`, feel free to change the message.
 
 ```
@@ -122,45 +121,44 @@ To use `saveImageToGallery()`:
 <string>To save screen capture image to your gallery</string>
 ```
 
-And that's all, I've handled the permission request, premission checking process, etc. Call `saveImageToGallery(image_path)` and that's it.
+And that's all, i've handle the permission request and process...etc...just call `saveImageToGallery(image_path)` and done.
 
-Lastly, I've tried to make the process simple by requesting only neccessary permission(s). This is not a plugin to work with file, so it has some week points.  
-For example, on some Android phones, there will be no need to ask for permission, you can save an image directly to `Download`. But when you open Gallery, the image will not be displayed immediately, it will take some moments. You can try to jump between albums until the image appears. (Depending on different Android models, the refresh rate of Gallery varies. Sometimes it's instant, other times not so fast)
+Last note, i've tried to make the process simple and require just neccessary permission. This is not an plugin to work with file, so it will have some week point. Take an example, on some Android phone, there will no need to ask permission, you can save the image directly to Download folder. But when you open the gallery, the image will not show immediately, it will take some second, try to jump between albums and you image will appear. (The time the gallery app refresh is different from Android phone models, some is instantly but some will take longer)
 
 ## Signals
 
 ```gdscript
-signal on_error(error_code)  # something's gone wrong, returning error_code
-signal on_saved_to_gallery() # emits when `saveImageToGallery()` has completed
+signal on_error(error_code)  # when something when wrong, return error_code
+signal on_saved_to_gallery() # emit when `saveImageToGallery()` done
 ```
 
 ## Error Codes
 
 > `ERROR_SHARE_CAPTURE_SCREEN`
 
-This rarely happens. Might be because you shared a captured image when the game was on other heavy tasks and couldn't handle this process. 
+This is rarely happen, but if it happen it's maybe you share captured image when the game is on heavy task so it break the process. 
 
 > `ERROR_SAVE_TO_GALLERY`
 
-Might happen if the image was damaged or user's device has run out of storage.
+Could happen if the image was damaged or device doesn't have any free storage left.
 
 > `ERROR_IMAGE_FILE`
 
-The shared image was damaged. Rarely happens.
+The share image was damaged. Rarely happen.
 
 > `ERROR_UNKNOWN`
 
-Unknown error. View Logcat (Android) or XCode debug (iOS) for more information.
+Unknown error. View Logcat (Android) or XCode debug (iOS) for more information
 
 # Contribute
 
-I want to help contribute to the Godot community so I create these plugins. I've prepared almost everything to help simplify and speed up the development and release progress.
+I want to help contribute to Godot community so i create these plugins. I'v prepared almost everything to help the development and release progress faster and easier.
 
-With only one command, you can build and release this plugin. Read [DEVELOP.md](./DEVELOP.md) for more information.
+Only one command and you'll build, release this plugin. Read [DEVELOP.md](./DEVELOP.md) for more information.
 
-If you find bugs, please open issues.
+If you found bug of the plugin, please open issues.
 
-If you have time to fix bugs or improve the plugins, please open PR. It's always welcomed and appreciated.
+If you have time to fix bugs or improve the plugins. Please open PR, it's always welcome.
 
 # License
 
